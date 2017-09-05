@@ -1,5 +1,5 @@
 {
-  "name": "Package-O-Matic",
+  "name": "blitz-js-cli",
   "version": "0.0.1",
   "description": "A CLI for installing presets in Javascript projects.",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "preset": "./index.js"
+    "blitz": "./index.js"
   },
   "author": "Yoni Weisbrod",
   "license": "ISC",
