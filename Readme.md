@@ -40,3 +40,5 @@ Run the blitz:
 $ blitz run 0
 ```
 
+### Be in touch
+Let me know if you find this useful! [@yoniweisbrod](https://twitter.com/yoniweisbrod)
