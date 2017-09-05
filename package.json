@@ -17,6 +17,7 @@
     "co-prompt": "^1.0.0",
     "commander": "^2.11.0",
     "node-inspect": "^1.11.2",
+    "react-native-vector-icons": "^4.3.0",
     "sanitize-filename": "^1.6.1"
   }
 }

@@ -2,7 +2,8 @@
 const program = require('commander');
 const fs = require('fs');
 const path = require('path');
-const exec = require('child_process').exec;
+const { exec, execSync } = require('child_process');
+
 
 function newConfig(name) {
 	const filename = `config_files/${name || "config_"+Date.now().toString()}.json`
@@ -26,7 +27,50 @@ function editConfig(num) {
 }
 
 function runConfig(num) {
-	json = 
+	let packagesInstalled = 0;
+	let packagesFailed = 0;
+
+	const json = require(filepath(num));
+	// Run packages
+	for (let i = 0; i < json.packages.length; i++) {
+		const package = json.packages[i];
+		console.log(`Installing ${package}...`);
+		try {
+			execSync(`npm install --save ${package}`, {stdio:[0,1,2]})
+			packagesInstalled++
+		}
+		catch(error) {
+			packagesFailed++
+			if (i < json.packages.length-1) {
+				console.log("Continuing to next package...");
+			}
+		}
+	}
+
+	// Run dev packages
+	for (let i = 0; i < json.devPackages.length; i++) {
+		const package = json.devPackages[i];
+		console.log(`Installing dev ${package}...`);
+		try {
+			execSync(`npm install --save-dev ${package}`, {stdio:[0,1,2]})
+		}
+		catch(error) {
+			if (i < json.packages.length-1) {
+				console.log("Continuing to next dev package...");
+			}
+		}
+	}
+
+	// Run shell commands
+	console.log("Running shell commands...")
+	for (const command of json.shellCommands) {
+		try {
+			execSync(command, {stdio:[0,1,2]})
+		} catch(error) {}
+	}
+
+	console.log("PACKAGES INSTALLED: ", packagesInstalled);
+	console.log("PACKAGES FAILED: ", packagesFailed);
 }
 
 function filepath(index) {
