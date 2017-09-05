@@ -1,7 +1,8 @@
 {
-  "name": "blitz-js-cli",
+  "name": "blitz-project-cli",
   "version": "0.0.1",
   "description": "A CLI for installing presets in Javascript projects.",
+  "keywords": ["cli", "bootstrap", "setup", "preset"],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +10,7 @@
   "bin": {
     "blitz": "./index.js"
   },
-  "author": "Yoni Weisbrod",
+  "author": "Yoni Weisbrod <git@yoni.sent.as> (http://www.yoniweisbrod.com/)",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.1.0",
@@ -19,5 +20,6 @@
     "node-inspect": "^1.11.2",
     "react-native-vector-icons": "^4.3.0",
     "sanitize-filename": "^1.6.1"
-  }
+  },
+  "files": ["config_files", "index.js", "skeleton.json"]
 }

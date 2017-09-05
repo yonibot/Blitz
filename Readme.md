@@ -4,7 +4,7 @@ Get up and running fast in any project by installing default npm packages in a b
 
 ## Installation
 ```
-npm install blitz-js-cli
+npm install blitz-project-cli
 ```
 
 ## Getting started
