@@ -1,0 +1,21 @@
+{
+  "name": "presets.js",
+  "version": "0.0.1",
+  "description": "A command-line tool for installing presets in Javascript projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "preset": "./index.js"
+  },
+  "author": "Yoni Weisbrod",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.11.0",
+    "node-inspect": "^1.11.2"
+  }
+}
