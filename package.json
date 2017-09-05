@@ -1,7 +1,7 @@
 {
-  "name": "presets.js",
+  "name": "Package-O-Matic",
   "version": "0.0.1",
-  "description": "A command-line tool for installing presets in Javascript projects.",
+  "description": "A CLI for installing presets in Javascript projects.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

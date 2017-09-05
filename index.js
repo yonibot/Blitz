@@ -3,7 +3,7 @@ const program = require('commander');
 const fs = require('fs');
 const path = require('path');
 const { exec, execSync } = require('child_process');
-
+const chalk = require('chalk');
 
 function newConfig(name) {
 	const filename = `config_files/${name || "config_"+Date.now().toString()}.json`
@@ -32,9 +32,10 @@ function runConfig(num) {
 
 	const json = require(filepath(num));
 	// Run packages
+	console.log(chalk.yellow(`Installing ${json.packages.length} packages...`));
 	for (let i = 0; i < json.packages.length; i++) {
 		const package = json.packages[i];
-		console.log(`Installing ${package}...`);
+		console.log(chalk.green(`Installing ${package}...`));
 		try {
 			execSync(`npm install --save ${package}`, {stdio:[0,1,2]})
 			packagesInstalled++
@@ -42,7 +43,7 @@ function runConfig(num) {
 		catch(error) {
 			packagesFailed++
 			if (i < json.packages.length-1) {
-				console.log("Continuing to next package...");
+				console.log(chalk.green("Continuing to next package..."));
 			}
 		}
 	}
@@ -50,27 +51,28 @@ function runConfig(num) {
 	// Run dev packages
 	for (let i = 0; i < json.devPackages.length; i++) {
 		const package = json.devPackages[i];
-		console.log(`Installing dev ${package}...`);
+		console.log(chalk.green(`Installing dev ${package}...`));
 		try {
 			execSync(`npm install --save-dev ${package}`, {stdio:[0,1,2]})
 		}
 		catch(error) {
 			if (i < json.packages.length-1) {
-				console.log("Continuing to next dev package...");
+				console.log(chalk.green("Continuing to next dev package..."));
 			}
 		}
 	}
 
 	// Run shell commands
-	console.log("Running shell commands...")
+	console.log(chalk.yellow("Running shell commands..."));
 	for (const command of json.shellCommands) {
 		try {
 			execSync(command, {stdio:[0,1,2]})
 		} catch(error) {}
 	}
-
-	console.log("PACKAGES INSTALLED: ", packagesInstalled);
-	console.log("PACKAGES FAILED: ", packagesFailed);
+	console.log();
+	console.log(chalk.yellow("Summary: "));
+	console.log(chalk.green("Packages installed: ", packagesInstalled));
+	console.log(chalk.red("Packaged failed: ", packagesFailed));
 }
 
 function filepath(index) {
