@@ -8,7 +8,7 @@ npm install blitz-js-cli
 ```
 
 ## Getting started
-First create a new Blitz file for a particular project type and open it in your editor. Let's say we always install MobX and an icon library for our React Native projects:
+Create a new Blitz file for a particular project type and then open it in your editor. 
 
 ```
 $ blitz new react-native
