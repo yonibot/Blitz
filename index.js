@@ -6,11 +6,7 @@ const { exec, execSync } = require('child_process');
 const chalk = require('chalk');
 
 function newConfig(name) {
-	var dir = path.join(__dirname, 'config_files');
-	if (!fs.existsSync(dir)){
-	    fs.mkdirSync(dir);
-	}
-
+	init();
 	const filename = `config_files/${name || "config_"+Date.now().toString()}.json`
 	const json = JSON.stringify(require('./skeleton'));
 	fs.writeFile(path.join(__dirname, filename), json, (err) => {
@@ -20,6 +16,7 @@ function newConfig(name) {
 }
 
 function listConfigs() {
+	init();
 	fs.readdir(path.join(__dirname, 'config_files'), function(err, files) {
 		for (let i = 0; i < files.length; i++) {
 			console.log(`${i} -> ${files[i]}`);
@@ -84,6 +81,13 @@ function filepath(index) {
 	const fileNames = fs.readdirSync(path.join(__dirname, 'config_files'));
 	fileName = fileNames[index];
 	return path.join(__dirname, 'config_files', fileName);
+}
+
+function init() {
+	var dir = path.join(__dirname, 'config_files');
+	if (!fs.existsSync(dir)){
+	    fs.mkdirSync(dir);
+	}
 }
 
 
