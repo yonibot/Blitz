@@ -15,7 +15,7 @@ function newConfig(name) {
 }
 
 function listConfigs() {
-	fs.readdir('file:./config_files', function(err, files) {
+	fs.readdir('file:config_files', function(err, files) {
 		for (let i = 0; i < files.length; i++) {
 			console.log(`${i} -> ${files[i]}`);
 		}
@@ -76,7 +76,7 @@ function runConfig(num) {
 }
 
 function filepath(index) {
-	const fileNames = fs.readdirSync('file:./config_files');
+	const fileNames = fs.readdirSync('file:config_files');
 	fileName = fileNames[index];
 	return path.resolve(`./config_files/${fileName}`);
 }
