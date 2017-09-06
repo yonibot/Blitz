@@ -6,7 +6,7 @@ const { exec, execSync } = require('child_process');
 const chalk = require('chalk');
 
 function newConfig(name) {
-	const filename = `config_files/${name || "config_"+Date.now().toString()}.json`
+	const filename = `file:config_files/${name || "config_"+Date.now().toString()}.json`
 	const json = JSON.stringify(require('./skeleton'));
 	fs.writeFile(filename, json, (err) => {
 	  if (err) throw err;
