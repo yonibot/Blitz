@@ -16,7 +16,7 @@
     "blitz": "./index.js"
   },
   "author": "Yoni Weisbrod <git@yoni.sent.as> (http://www.yoniweisbrod.com/)",
-  "license": "ISC"
+  "license": "ISC",
   "dependencies": {
     "chalk": "^2.1.0",
     "co": "^4.6.0",
