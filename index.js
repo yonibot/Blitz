@@ -22,6 +22,9 @@ function listConfigs() {
 			for (let i = 0; i < files.length; i++) {
 				console.log(`${i} -> ${files[i]}`);
 			}
+		} else {
+			console.log(chalk.red("No configuration files yet."));
+			console.log(chalk.green("Create one with `blitz new [some_project_name]`."));
 		}
 	});
 }
