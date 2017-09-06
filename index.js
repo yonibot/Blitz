@@ -6,16 +6,16 @@ const { exec, execSync } = require('child_process');
 const chalk = require('chalk');
 
 function newConfig(name) {
-	const filename = `file:config_files/${name || "config_"+Date.now().toString()}.json`
+	const filename = `config_files/${name || "config_"+Date.now().toString()}.json`
 	const json = JSON.stringify(require('./skeleton'));
-	fs.writeFile(filename, json, (err) => {
+	fs.writeFile(path.join(__dirname, filename), json, (err) => {
 	  if (err) throw err;
 	  console.log(`New config created: ${filename}`);
 	});
 }
 
 function listConfigs() {
-	fs.readdir('file:config_files', function(err, files) {
+	fs.readdir(path.join(__dirname, 'config_files'), function(err, files) {
 		for (let i = 0; i < files.length; i++) {
 			console.log(`${i} -> ${files[i]}`);
 		}
@@ -76,9 +76,9 @@ function runConfig(num) {
 }
 
 function filepath(index) {
-	const fileNames = fs.readdirSync('file:config_files');
+	const fileNames = fs.readdirSync(path.join(__dirname, 'config_files'));
 	fileName = fileNames[index];
-	return path.resolve(`./config_files/${fileName}`);
+	return path.join(__dirname, 'config_files', fileName);
 }
 
 
