@@ -1,6 +1,6 @@
 {
   "name": "blitz-project-cli",
-  "version": "0.0.8-beta.4",
+  "version": "0.0.9",
   "description": "A CLI for installing presets in Javascript projects.",
   "keywords": [
     "cli",
