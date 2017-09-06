@@ -1,6 +1,6 @@
 {
   "name": "blitz-project-cli",
-  "version": "0.0.8.beta-0",
+  "version": "0.0.8-beta.1",
   "description": "A CLI for installing presets in Javascript projects.",
   "keywords": [
     "cli",
@@ -16,7 +16,7 @@
     "blitz": "./index.js"
   },
   "author": "Yoni Weisbrod <git@yoni.sent.as> (http://www.yoniweisbrod.com/)",
-  "license": "ISC",
+  "license": "ISC"
   "dependencies": {
     "chalk": "^2.1.0",
     "co": "^4.6.0",
