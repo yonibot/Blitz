@@ -6,6 +6,11 @@ const { exec, execSync } = require('child_process');
 const chalk = require('chalk');
 
 function newConfig(name) {
+	var dir = path.join(__dirname, 'config_files');
+	if (!fs.existsSync(dir)){
+	    fs.mkdirSync(dir);
+	}
+
 	const filename = `config_files/${name || "config_"+Date.now().toString()}.json`
 	const json = JSON.stringify(require('./skeleton'));
 	fs.writeFile(path.join(__dirname, filename), json, (err) => {
