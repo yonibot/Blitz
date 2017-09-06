@@ -18,7 +18,7 @@ function newConfig(name) {
 function listConfigs() {
 	init();
 	fs.readdir(path.join(__dirname, 'config_files'), function(err, files) {
-		if (files) {
+		if (files.length > 0) {
 			for (let i = 0; i < files.length; i++) {
 				console.log(`${i} -> ${files[i]}`);
 			}
