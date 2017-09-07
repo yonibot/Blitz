@@ -1,12 +1,23 @@
 # Blitz
 
+<!-- MarkdownTOC -->
+
+- Installation
+- Getting started
+- Release notes
+
+<!-- /MarkdownTOC -->
+
+
 Get up and running fast in any project by installing default npm packages in a blitz.
 
+<a name="None"></a>
 ## Installation
 ```
 npm install blitz-project-cli
 ```
 
+<a name="None"></a>
 ## Getting started
 Create a new Blitz file for a particular project type and then open it in your editor. 
 
@@ -15,13 +26,13 @@ $ blitz new react-native
 New config created: config_files/react-native.json
 
 $ blitz list
-0 -> react-native.json
+react-native
 
-$ blitz edit 0
+$ blitz edit react-native
 { opens your text editor with a skeleton JSON }
 ```
 
-Now we'll add our default packages. This file can be updated at any point by running `blitz edit <num>`.
+Now we'll add our default packages.
 ```
 {
 	"packages":[
@@ -37,11 +48,9 @@ Now we'll add our default packages. This file can be updated at any point by run
 
 Run the blitz:
 ```
-$ blitz run 0
+$ blitz run react-native
 ```
 
-## Next steps
-The CLI should be more intuitive so that you can type the **name** of a blitz configuration file rather than a number.
-
-### Be in touch
-Let me know if you find this useful! [@yoniweisbrod](https://twitter.com/yoniweisbrod)
+<a name="None"></a>
+## Release notes
+As of 0.0.12-beta.7, config files are stored on the user's machine, where aplication config data is stored.

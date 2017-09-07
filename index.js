@@ -9,7 +9,7 @@ function newConfig(name) {
 	init();
 	const filename = `config_files/${name || "config_"+Date.now().toString()}.json`
 	const json = JSON.stringify(require('./skeleton'));
-	fs.writeFile(path.join(__dirname, filename), json, (err) => {
+	fs.writeFile(path.join(dirpath(), filename), json, (err) => {
 	  if (err) throw err;
 	  console.log(`New config created: ${filename}`);
 	});
@@ -17,10 +17,11 @@ function newConfig(name) {
 
 function listConfigs() {
 	init();
-	fs.readdir(path.join(__dirname, 'config_files'), function(err, files) {
+	fs.readdir(path.join(dirpath(), 'config_files'), function(err, files) {
 		if (files.length > 0) {
 			for (let i = 0; i < files.length; i++) {
-				console.log(`${i} -> ${files[i]}`);
+				const name = files[i].split('.')[0];
+				console.log(`${name}`);
 			}
 		} else {
 			console.log(chalk.red("No configuration files yet."));
@@ -29,15 +30,15 @@ function listConfigs() {
 	});
 }
 
-function editConfig(num) {
-  exec(`open ${filepath(num)}`)
+function editConfig(name) {
+  exec(`open ${filepath(name)}`)
 }
 
-function runConfig(num) {
+function runConfig(name) {
 	let packagesInstalled = 0;
 	let packagesFailed = 0;
 
-	const json = require(filepath(num));
+	const json = require(filepath(name));
 	// Run packages
 	console.log(chalk.yellow(`Installing ${json.packages.length} packages...`));
 	for (let i = 0; i < json.packages.length; i++) {
@@ -82,14 +83,32 @@ function runConfig(num) {
 	console.log(chalk.red("Packaged failed: ", packagesFailed));
 }
 
-function filepath(index) {
-	const fileNames = fs.readdirSync(path.join(__dirname, 'config_files'));
-	fileName = fileNames[index];
-	return path.join(__dirname, 'config_files', fileName);
+function filepath(name) {
+	return path.join(dirpath(), 'config_files', `${name}.json`);
+}
+
+function dirpath() {
+	let path;
+	if (process.env.APPDATA) {
+		path = process.env.APPDATA;
+	} else if (process.platform == 'darwin') {
+		// OS X
+		path = process.env.HOME + '/Library/Preferences/Blitz-CLI';
+	} else {
+		// Linux
+		path = process.env.HOME + ".local/share";
+	}
+  try {
+    fs.mkdirSync(path)
+  } catch (err) {
+    if (err.code !== 'EEXIST') throw err
+  }
+	return path;
 }
 
 function init() {
-	var dir = path.join(__dirname, 'config_files');
+	console.log(dirpath())
+	var dir = path.join(dirpath(), 'config_files');
 	if (!fs.existsSync(dir)){
 	    fs.mkdirSync(dir);
 	}
