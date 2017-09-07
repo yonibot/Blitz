@@ -30,6 +30,16 @@ function listConfigs() {
 	});
 }
 
+function deleteConfig(name) {
+	fs.unlink(`${path.resolve(dirpath(), 'config_files', name)}.json`, function(err) {
+		if (err) {
+			console.log(chalk.red(err));
+		} else {
+			console.log(chalk.green(`Config "${name}" has been deleted.`));
+		}
+	});
+}
+
 function editConfig(name) {
   exec(`open ${filepath(name)}`)
 }
@@ -125,12 +135,16 @@ program
 	.action(listConfigs)
 
 program
-	.command('edit <num>')
+	.command('edit <name>')
 	.action(editConfig)
 
 program
-	.command('run <num>')
+	.command('run <name>')
 	.action(runConfig)
+
+program
+	.command('delete <name>')
+	.action(deleteConfig)
 
 program.parse(process.argv);
 

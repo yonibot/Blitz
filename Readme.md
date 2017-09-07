@@ -4,6 +4,7 @@
 
 - Installation
 - Getting started
+- API
 - Release notes
 
 <!-- /MarkdownTOC -->
@@ -49,6 +50,19 @@ Now we'll add our default packages.
 Run the blitz:
 ```
 $ blitz run react-native
+```
+
+<a name="None"></a>
+## API
+Run `blitz help` to see all available commands.
+```
+  Commands:
+
+    new [name]   
+    list         
+    edit <name>  
+    run <name>   
+    delete <name>
 ```
 
 <a name="None"></a>
