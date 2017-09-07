@@ -1,4 +1,5 @@
 # Blitz
+[![NPM](https://nodei.co/npm/blitz-project-cli.png?downloads=true)](https://nodei.co/npm/blitz-project-cli/)
 
 <!-- MarkdownTOC -->
 
