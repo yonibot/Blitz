@@ -9,9 +9,10 @@
 - Release notes
 
 <!-- /MarkdownTOC -->
+ 
+Blitz keeps named lists of npm "presets" for different types of projects. 
 
-
-Get up and running fast in any project by installing default npm packages in a blitz.
+So, for instance, if you always install MobX, AntDesign, and certain Babel presets for your React projects, you can create a Blitz file called "React" and include those packags. Running `blitz run React` will install all packages, dev packages, and shell commands that you defined in the Blitzfile.
 
 <a name="None"></a>
 ## Installation
